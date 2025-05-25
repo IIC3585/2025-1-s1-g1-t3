@@ -4,7 +4,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  // import MultipleConverterContent from '$lib/components/multipleConverter/multipleConverterContent.svelte'
+	import MultipleConverterContent from "$lib/components/multipleConverter/multipleConverterContent.svelte";
 </script>
 
 <div class="max-w-screen flex h-screen max-h-screen w-full items-center justify-center p-20">
@@ -48,7 +48,7 @@
           </Card.Description>
         </Card.Header>
         <Card.Content>
-          <p class="text-center py-10">Funcionalidad de conversión múltiple</p>
+          <MultipleConverterContent />
         </Card.Content>
       </Card.Root>
     </Tabs.Content>
