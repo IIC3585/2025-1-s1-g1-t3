@@ -20,12 +20,20 @@ const {
   currencies,
   addConversion,
   removeConversion,
+  showError,
   resetForm,
   generateConversions
 } = useCurrencyConverter()
 </script>
 
 <template>
+  <div
+    v-if="error"
+    class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-red-600 text-white px-6 py-2 rounded shadow-lg transition-opacity duration-500"
+    :style="{ opacity: showError ? 1 : 0 }"
+  >
+    {{ error }}
+  </div>
   <Card class="flex flex-col h-[80vh]">
     <CardHeader>
       <CardTitle>Convertidor de Moneda</CardTitle>
@@ -38,7 +46,6 @@ const {
       <div v-if="loading" class="flex justify-center items-center h-full">
         <Loader class="animate-spin text-primary h-8 w-8" />
       </div>
-      <div v-else-if="error" class="text-red-500 text-center py-4">{{ error }}</div>
       <template v-else>
         <form class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -116,6 +123,7 @@ const {
           class="mt-4 overflow-y-auto max-h-[300px] flex-1"
         />
       </template>
+
     </CardContent>
 
     <CardFooter
@@ -130,11 +138,18 @@ const {
       >
         Reiniciar
       </Button>
+      <Loader
+        v-if="loading"
+        class="h-5 w-5 animate-spin text-primary"
+        role="status"
+        aria-label="Cargando"
+      />
       <Button
-        v-if="selectedConversions.length > 0"
+        v-if="selectedConversions.length > 0 && !loading"
         @click="generateConversions"
         variant="default"
-        class="flex-1"
+        :disabled="loading"
+        :class="{ 'opacity-50 cursor-not-allowed': loading }"
       >
         Convertir
       </Button>

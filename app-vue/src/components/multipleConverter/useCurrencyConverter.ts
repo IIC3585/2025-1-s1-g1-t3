@@ -8,6 +8,7 @@ export default function useCurrencyConverter() {
   const loading = ref(false)
   const error = ref<string | null>(null)
   const amount = ref<number>(0)
+  const showError = ref(false)
 
   const fromCurrency = ref<Currency>({
     country: 'Estados Unidos',
@@ -50,16 +51,22 @@ export default function useCurrencyConverter() {
   }
 
   const generateConversions = async () => {
-    console.log('Generating conversions for:', fromCurrency.value.code, selectedConversions.value, amount.value)
-    const res = await convert(fromCurrency.value.code, selectedConversions.value.map(c => c.currencyCode), amount.value)
-    if (res instanceof Error) {
-      error.value = res.message
-      return
-    }
-    console.log('Conversion results:', res)
-    selectedConversions.value = res
+  if (loading.value) return
+    loading.value = true
     error.value = null
+    try {
+    const res = await convert(fromCurrency.value.code, selectedConversions.value.map(c => c.currencyCode), amount.value)
+    selectedConversions.value = res
 
+  } catch (err) {
+    error.value =` ${err instanceof Error ? err.message : 'Error while converting currencies'}`
+    showError.value = true
+  } finally {
+      loading.value = false
+      setTimeout(() => {
+        showError.value = false
+      }, 1500)
+    }
   }
 
   return {
@@ -67,6 +74,7 @@ export default function useCurrencyConverter() {
     error,
     amount,
     fromCurrency,
+    showError,
     selectedConversions,
     currencies,
     setFromCurrency,

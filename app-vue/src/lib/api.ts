@@ -27,8 +27,8 @@ export function applyConversion(
   amount: number,
   exchangeRates: Record<string, number>,
 ): number {
-  if (!exchangeRates[from] || !exchangeRates[to]) {
-    throw new Error('Invalid currency code')
+  if (!exchangeRates[to]) {
+    return 0
   }
   return (amount / exchangeRates[from]) * exchangeRates[to]
 }
@@ -38,18 +38,19 @@ export async function convert(
   to: string [],
   amount: number
 ): Promise<ConversionResult[]> {
-  if (!fromCode || !to) {
+  try {
+      if (!fromCode || !to) {
     throw new Error('Currency codes must be provided')
   }
   if (amount <= 0 || isNaN(amount)) {
     throw new Error('Amount must be a valid number greater than zero')
   }
 
-  try {
     const data = await fetchExchangeRates(fromCode)
     if (data.result !== 'success') {
       throw new Error('Failed to fetch exchange rates')
     }
+    console.log('Exchange rates data:', data)
 
     if (to.length === 0) {
       throw new Error('No target currency codes provided')
@@ -60,6 +61,7 @@ export async function convert(
         ...data.rates,
         [data.base_code]: 1,
       })
+
       result.push({
         currencyCode: code,
         convertedAmount: parseFloat(convertedAmount.toFixed(2)),
@@ -69,7 +71,7 @@ export async function convert(
     return result
   } catch (error) {
     console.error('Error in convert:', error)
-    return []
+    throw new Error(`Conversion failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
 }
 

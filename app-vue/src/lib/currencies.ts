@@ -1,6 +1,6 @@
 import type { Currency } from "./types";
 
-const flagsApiUrl = 'https://flagcdn.com/w320'
+const flagsApiUrl = 'https://flagcdn.com'
 
 export const currencies:Record<string , Currency> = {
   AED: {
