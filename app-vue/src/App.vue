@@ -1,47 +1,76 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import MultipleConverterContent from '@/components/multipleConverter/multipleConverterContent.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="flex h-screen items-center  w-full justify-center max-w-screen max-h-screen p-20">
+      <Tabs default-value="single-converted" class="w-full m-10 max-h-[600px]">
+          <TabsList class="grid w-full grid-cols-3">
+          <TabsTrigger value="single-converted">
+            Conversor Simple
+          </TabsTrigger>
+          <TabsTrigger value="multiple-converted">
+            Conversor Múltiple
+          </TabsTrigger>
+          <TabsTrigger value="graph">
+            Gráfico
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="single-converted">
+          <Card>
+            <CardHeader>
+              <CardTitle>Account</CardTitle>
+              <CardDescription>
+                Make changes to your account here. Click save when you're done.
+              </CardDescription>
+            </CardHeader>
+            <CardContent class="space-y-2">
+              <div class="space-y-1">
+                <Label for="name">Name</Label>
+                <Input id="name" default-value="Pedro Duarte" />
+              </div>
+              <div class="space-y-1">
+                <Label for="username">Username</Label>
+                <Input id="username" default-value="@peduarte" />
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button>Save changes</Button>
+            </CardFooter>
+          </Card>
+        </TabsContent>
+        <TabsContent value="multiple-converted">
+          <MultipleConverterContent />
+        </TabsContent>
+        <TabsContent value="graph">
+          <Card>
+            <CardHeader>
+              <CardTitle>Password</CardTitle>
+              <CardDescription>
+                Change your password here. After saving, you'll be logged out.
+              </CardDescription>
+            </CardHeader>
+            <CardContent class="space-y-2">
+              <div class="space-y-1">
+                <Label for="current">Current password</Label>
+                <Input id="current" type="password" />
+              </div>
+              <div class="space-y-1">
+                <Label for="new">New password</Label>
+                <Input id="new" type="password" />
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button>Save password</Button>
+            </CardFooter>
+          </Card>
+        </TabsContent>
+      </Tabs>
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
