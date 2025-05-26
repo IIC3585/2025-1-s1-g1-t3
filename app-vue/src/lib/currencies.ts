@@ -1,3 +1,4 @@
+
 import type { Currency } from "./types";
 
 const flagsApiUrl = 'https://flagcdn.com'
@@ -854,4 +855,6 @@ export const currencies:Record<string , Currency> = {
     country: 'Zimbabwe',
     flag: `${flagsApiUrl}/zw.svg`,
   },
+
 }
+

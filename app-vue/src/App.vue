@@ -1,10 +1,13 @@
 <script setup lang="ts">
 
+import { ref, computed, onMounted } from 'vue'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
+
+import SimpleConverter from '@/components/singleConverter/SimpleConverter.vue'
 import MultipleConverterContent from '@/components/multipleConverter/multipleConverterContent.vue'
 </script>
 
@@ -23,27 +26,7 @@ import MultipleConverterContent from '@/components/multipleConverter/multipleCon
           </TabsTrigger>
         </TabsList>
         <TabsContent value="single-converted">
-          <Card>
-            <CardHeader>
-              <CardTitle>Account</CardTitle>
-              <CardDescription>
-                Make changes to your account here. Click save when you're done.
-              </CardDescription>
-            </CardHeader>
-            <CardContent class="space-y-2">
-              <div class="space-y-1">
-                <Label for="name">Name</Label>
-                <Input id="name" default-value="Pedro Duarte" />
-              </div>
-              <div class="space-y-1">
-                <Label for="username">Username</Label>
-                <Input id="username" default-value="@peduarte" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card>
+          <SimpleConverter />
         </TabsContent>
         <TabsContent value="multiple-converted">
           <MultipleConverterContent />

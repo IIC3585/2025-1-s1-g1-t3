@@ -23,4 +23,6 @@ export interface ExchangeRateResponse {
   time_eol_unix: number;
   base_code: string;
   rates: Record<string, number>;
+
 }
+
