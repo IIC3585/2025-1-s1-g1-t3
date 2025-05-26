@@ -1,9 +1,9 @@
 <template>
   <Card>
     <CardHeader>
-      <CardTitle>Conversor de Moneda</CardTitle>
+      <CardTitle>Convertidor de Moneda</CardTitle>
       <CardDescription>
-        Convierte entre diferentes monedas fácilmente.
+        Convierte entre diferentes monedas usando tasas de cambio actualizadas
       </CardDescription>
     </CardHeader>
     <CardContent class="space-y-8">

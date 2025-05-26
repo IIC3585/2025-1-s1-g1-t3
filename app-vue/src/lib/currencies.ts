@@ -1,9 +1,8 @@
-
-import type { Currency } from "./types";
+import type { Currency } from './types'
 
 const flagsApiUrl = 'https://flagcdn.com'
 
-export const currencies:Record<string , Currency> = {
+export const currencies: Record<string, Currency> = {
   AED: {
     code: 'AED',
     name: 'UAE Dirham',
@@ -855,6 +854,4 @@ export const currencies:Record<string , Currency> = {
     country: 'Zimbabwe',
     flag: `${flagsApiUrl}/zw.svg`,
   },
-
 }
-
