@@ -50,7 +50,7 @@ export async function convert(
     if (data.result !== 'success') {
       throw new Error('Failed to fetch exchange rates')
     }
-    console.log('Exchange rates data:', data)
+    // console.log('Exchange rates data:', data)
 
     if (to.length === 0) {
       throw new Error('No target currency codes provided')

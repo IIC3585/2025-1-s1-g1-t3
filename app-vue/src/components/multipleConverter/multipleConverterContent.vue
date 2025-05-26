@@ -34,7 +34,7 @@ const {
   >
     {{ error }}
   </div>
-  <Card class="flex flex-col h-[80vh]">
+  <Card class="flex flex-col ">
     <CardHeader>
       <CardTitle>Convertidor de Moneda</CardTitle>
       <CardDescription>
@@ -50,7 +50,7 @@ const {
         <form class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="space-y-2">
-              <Label for="amount" class="block text-sm font-medium text-primary">Cantidad</Label>
+              <Label for="amount">Cantidad</Label>
               <Input
                 type="number"
                 id="amount"

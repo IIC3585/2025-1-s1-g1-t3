@@ -25,6 +25,7 @@ const emit = defineEmits(['remove-conversion'])
           @click.stop="emit('remove-conversion', index)"
           class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-200"
           aria-label="Eliminar conversión"
+          variant="ghost"
         >
           <X class="h-4 w-4 text-gray-500" />
         </Button>

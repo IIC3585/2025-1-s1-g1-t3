@@ -3,7 +3,7 @@ import { type ConversionResult, type ExchangeRateResponse } from '@/lib/types'
 
 const API_EXCHANGE_RATES_URL = 'https://open.er-api.com/v6/latest'
 
-const API_HISTORICAL_RATES_EUROPE_URL = 'https://frankfurter.dev'
+const API_EXCHANGE_RATES_EUROPE_URL = 'https://api.frankfurter.dev/v1'
 
 export async function fetchExchangeRates(fromCode:string): Promise<ExchangeRateResponse> {
   try {
@@ -50,7 +50,7 @@ export async function convert(
     if (data.result !== 'success') {
       throw new Error('Failed to fetch exchange rates')
     }
-    console.log('Exchange rates data:', data)
+    // console.log('Exchange rates data:', data)
 
     if (to.length === 0) {
       throw new Error('No target currency codes provided')
@@ -73,8 +73,59 @@ export async function convert(
     console.error('Error in convert:', error)
     throw new Error(`Conversion failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
-
 }
 
 
+export async function fetchCurrentRatesEurope(from: string, to:string ): Promise<any> {
+  try {
+    const response = await fetch(
+      `${API_EXCHANGE_RATES_EUROPE_URL}/latest?base=${from}&symbols=${to}`,
+    )
+    if (!response.ok) {
+      throw new Error('Error al obtener las tasas actuales')
+    }
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching current rates:', error)
+    throw error
+  }
+}
+
+export async function fetchCurrenciesEurope(): Promise<Record<string, string>> {
+  try {
+    const response = await fetch(`${API_EXCHANGE_RATES_EUROPE_URL}/currencies`)
+    if (!response.ok) {
+      throw new Error('Error al obtener las monedas de Europa')
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error fetching European currencies:', error)
+    throw error
+  }
+}
+
+export async function fetchTimeSeriesData(
+  from: string,
+  to: string,
+  startDate: string,
+  endDate: string
+): Promise<Record<string, number>> {
+  try {
+    let URL = `${API_EXCHANGE_RATES_EUROPE_URL}/${startDate}..`
+    if (endDate) {
+      URL += `${endDate}`
+    }
+    URL += `?base=${from}&symbols=${to}`
+    const response = await fetch(URL)
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos de la serie temporal')
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error fetching time series data:', error)
+    throw error
+  }
+}
 
