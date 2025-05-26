@@ -34,14 +34,14 @@
 
 {#if $error}
 	<div
-		class="fixed left-1/2 top-4 z-50 -translate-x-1/2 transform rounded bg-red-600 px-6 py-2 text-white shadow-lg transition-opacity duration-500"
+		class="fixed top-4 left-1/2 z-50 -translate-x-1/2 transform rounded bg-red-600 px-6 py-2 text-white shadow-lg transition-opacity duration-500"
 		style:opacity={$showError ? 1 : 0}
 	>
 		{$error}
 	</div>
 {/if}
 
-<Card class="flex h-[80vh] flex-col">
+<Card class="mb-4 flex flex-col">
 	<CardHeader>
 		<CardTitle>Convertidor de Moneda</CardTitle>
 		<CardDescription>
@@ -49,7 +49,7 @@
 		</CardDescription>
 	</CardHeader>
 
-	<CardContent class="flex-1 space-y-4">
+	<CardContent class="flex-1 space-y-8">
 		{#if $loading}
 			<div class="flex h-full items-center justify-center">
 				<Loader class="text-primary h-8 w-8 animate-spin" />
@@ -58,7 +58,7 @@
 			<form class="space-y-4">
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 					<div class="space-y-2">
-						<Label for="amount" class="text-primary block text-sm font-medium">Cantidad</Label>
+						<Label for="amount">Cantidad</Label>
 						<Input
 							type="number"
 							id="amount"

@@ -1,63 +1,37 @@
 <script lang="ts">
-  import * as Tabs from "$lib/components/ui/tabs/index.js";
-  import * as Card from "$lib/components/ui/card/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
-	import MultipleConverterContent from "$lib/components/multipleConverter/multipleConverterContent.svelte";
-  import SimpleConverter from "$lib/components/singleConvertor/SimpleConverter.svelte";
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
+	import MultipleConverterContent from '$lib/components/multipleConverter/multipleConverterContent.svelte';
+	import SimpleConverter from '$lib/components/singleConvertor/SimpleConverter.svelte';
+	import ChartContent from '$lib/components/chart/chartContent.svelte';
 </script>
 
-<div class="max-w-screen flex h-screen max-h-screen w-full items-center justify-center p-20">
-  <Tabs.Root value="single-converted" class="m-10 max-h-[600px] w-full">
-    <Tabs.List class="grid w-full grid-cols-3">
-      <Tabs.Trigger value="single-converted">Conversor Simple</Tabs.Trigger>
-      <Tabs.Trigger value="multiple-converted">Conversor Múltiple</Tabs.Trigger>
-      <Tabs.Trigger value="graph">Gráfico</Tabs.Trigger>
-    </Tabs.List>
+<div class="min-h-screen">
+	<div class="mx-auto flex flex-col px-4">
+		<div class="py-4 text-center">
+			<h1 class="mb-4 text-4xl font-bold text-slate-700 md:text-5xl">Money Exchange</h1>
+		</div>
+		<div class="flex justify-center">
+			<div class="w-full max-w-3xl">
+				<Tabs.Root value="single-converted" class="w-full">
+					<Tabs.List class="grid w-full grid-cols-3">
+						<Tabs.Trigger value="single-converted">Conversor Simple</Tabs.Trigger>
+						<Tabs.Trigger value="multiple-converted">Conversor Múltiple</Tabs.Trigger>
+						<Tabs.Trigger value="graph">Gráfico</Tabs.Trigger>
+					</Tabs.List>
 
-    <Tabs.Content value="single-converted">
-      <Card.Root>
-        <Card.Header>
-          <Card.Title>Conversor Simple</Card.Title>
-          <Card.Description>
-            Convierte valores de una unidad a otra.
-          </Card.Description>
-        </Card.Header>
-        <Card.Content class="space-y-2">
-          <SimpleConverter />
-        </Card.Content>
-      </Card.Root>
-    </Tabs.Content>
+					<Tabs.Content value="single-converted">
+						<SimpleConverter />
+					</Tabs.Content>
 
-    <Tabs.Content value="multiple-converted">
-      <Card.Root>
-        <Card.Header>
-          <Card.Title>Conversor Múltiple</Card.Title>
-          <Card.Description>
-            Convierte múltiples valores a la vez.
-          </Card.Description>
-        </Card.Header>
-        <Card.Content>
-          <MultipleConverterContent />
-        </Card.Content>
-      </Card.Root>
-    </Tabs.Content>
+					<Tabs.Content value="multiple-converted">
+						<MultipleConverterContent />
+					</Tabs.Content>
 
-    <Tabs.Content value="graph">
-      <Card.Root>
-        <Card.Header>
-          <Card.Title>Gráfico</Card.Title>
-          <Card.Description>
-            Visualización gráfica de conversiones.
-          </Card.Description>
-        </Card.Header>
-        <Card.Content class="space-y-2">
-          <div class="h-64 bg-gray-100 rounded-md flex items-center justify-center">
-            <p>Aquí iría el gráfico</p>
-          </div>
-        </Card.Content>
-      </Card.Root>
-    </Tabs.Content>
-  </Tabs.Root>
+					<Tabs.Content value="graph">
+						<ChartContent />
+					</Tabs.Content>
+				</Tabs.Root>
+			</div>
+		</div>
+	</div>
 </div>
