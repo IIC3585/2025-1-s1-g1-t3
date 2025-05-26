@@ -1,4 +1,4 @@
-import { type ConversionResult, type ExchangeRateResponse } from '@/lib/types'
+import { type ConversionResult, type ExchangeRateResponse } from './types'
 
 
 const API_EXCHANGE_RATES_URL = 'https://open.er-api.com/v6/latest'
@@ -73,8 +73,6 @@ export async function convert(
     console.error('Error in convert:', error)
     throw new Error(`Conversion failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
-
 }
-
 
 
