@@ -5,6 +5,7 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
 	import MultipleConverterContent from "$lib/components/multipleConverter/multipleConverterContent.svelte";
+  import SimpleConverter from "$lib/components/singleConvertor/SimpleConverter.svelte";
 </script>
 
 <div class="max-w-screen flex h-screen max-h-screen w-full items-center justify-center p-20">
@@ -24,18 +25,8 @@
           </Card.Description>
         </Card.Header>
         <Card.Content class="space-y-2">
-          <div class="space-y-1">
-            <Label for="value">Valor</Label>
-            <Input id="value" type="number" />
-          </div>
-          <div class="space-y-1">
-            <Label for="unit">Unidad</Label>
-            <Input id="unit" />
-          </div>
+          <SimpleConverter />
         </Card.Content>
-        <Card.Footer>
-          <Button>Convertir</Button>
-        </Card.Footer>
       </Card.Root>
     </Tabs.Content>
 
