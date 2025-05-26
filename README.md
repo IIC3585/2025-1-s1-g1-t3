@@ -13,7 +13,25 @@ MoneyExchange
 > Fecha de entrega 26-05-2025
 
 
-## 📦 Estructura del Proyecto
+### :book: Correr el proyecto
+> [!WARNING]
+> Es necesario tener node instalado
+
+1. Clonar el repositorio mediante git
+```bash
+https://github.com/IIC3585/2025-1-s1-g1-t3.git
+```
+2. Ir a la carpeta del proyecto que se desea correr
+3. Instalar las dependencias
+```bash
+npm install
+```
+4. Correr el proyecto, por defecto ambos proyectos corren en **http://localhost:5173/**
+```bash
+npm run dev
+```
+
+### 📦 Estructura del Proyecto
 
 El proyecto está organizado de la siguiente manera:
 
@@ -66,7 +84,7 @@ El proyecto está organizado de la siguiente manera:
 └── README.md                       // README principal del proyecto          
 ```
 
-#### 🛠️ Características principales:
+### 🛠️ Características principales:
 
 Estas aplicaciones, disponibles tanto en Svelte como en Vue, ofrecen una solución completa para la gestión y visualización de tipos de cambio de moneda. Cuentan con tres funcionalidades principales:
 
