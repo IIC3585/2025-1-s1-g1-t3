@@ -45,8 +45,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
     <div>
-      <label class="text-sm font-medium">Monto</label>
+      <label for="amount-input" class="text-sm font-medium">Monto</label>
       <input
+        id="amount-input"
         type="number"
         bind:value={amount}
         min="0"
@@ -55,8 +56,9 @@
     </div>
 
     <div>
-      <label class="text-sm font-medium">Resultado</label>
+      <label for="resultado" class="text-sm font-medium">Resultado</label>
       <input
+        id="resultado"
         type="text"
         value={result ?? ''}
         readonly
@@ -67,8 +69,8 @@
 
   <div class="grid grid-cols-3 gap-4 items-end mb-4">
     <div>
-      <label class="text-sm font-medium">De</label>
-      <select bind:value={from} class="w-full border rounded-md px-3 py-2 mt-1">
+      <label for="from-currency" class="text-sm font-medium">De</label>
+      <select id="from-currency" bind:value={from} class="w-full border rounded-md px-3 py-2 mt-1">
         {#each currencyList as [code, currency]}
           <option value={code}>{code} - {currency.name}</option>
         {/each}
@@ -86,8 +88,8 @@
     </div>
 
     <div>
-      <label class="text-sm font-medium">A</label>
-      <select bind:value={to} class="w-full border rounded-md px-3 py-2 mt-1">
+      <label for="to-currency" class="text-sm font-medium">A</label>
+      <select id="to-currency" bind:value={to} class="w-full border rounded-md px-3 py-2 mt-1">
         {#each currencyList as [code, currency]}
           <option value={code}>{code} - {currency.name}</option>
         {/each}
